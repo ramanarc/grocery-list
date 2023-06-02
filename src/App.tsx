@@ -1,16 +1,18 @@
 import { useState } from "react"
-
+import { AiFillEdit, AiFillDelete } from "react-icons/ai"
 
 function App() {
 
   const [inputText, setInputText] = useState("");
+  const [showList, setShowList] = useState(false);
 
-  const handleInputChange = (event: HTMLInputElement) => {
+  const handleInputChange = (event: HTMLFormElement) => {
     setInputText(event.target.value);
   }
 
-  const handleSubmit = (event: HTMLInputElement) => {
+  const handleSubmit = (event: HTMLFormElement) => {
     event.preventDefault();
+    setShowList(true);
     // boolean value true and shows the list component
     console.log(inputText);
   }
@@ -24,6 +26,14 @@ function App() {
           <input type="submit" value="Submit" />
         </div>
       </form>
+      {showList &&
+        <div className="input-list">
+          <p>{inputText}</p>
+          <div className="icon-group">
+            <AiFillEdit className="icon-style" />
+            <AiFillDelete className="icon-style" />
+          </div>
+        </div>}
     </main>
   )
 }
